@@ -1,0 +1,81 @@
+{
+  "identifier" : "D86D64B0",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "CAD47BB5",
+      "localizations" : [
+
+      ],
+      "name" : "Premium Plan",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "0.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "5830091A",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "",
+              "displayName" : "Subscription 1",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "",
+              "displayName" : "サブスクプラン 1",
+              "locale" : "ja"
+            }
+          ],
+          "productID" : "com.ry-itto.example.subscription1",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Subscription 1",
+          "subscriptionGroupID" : "CAD47BB5",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "9.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "F55B05B3",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "",
+              "displayName" : "Subscription 2",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "",
+              "displayName" : "サブスク 2",
+              "locale" : "ja"
+            }
+          ],
+          "productID" : "com.ry-itto.example.subscription2",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Subscription 2",
+          "subscriptionGroupID" : "CAD47BB5",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 1
+  }
+}
