@@ -13,11 +13,11 @@ class PaymentQueueDelegate implements SKPaymentQueueDelegateWrapper {
   @override
   bool shouldContinueTransaction(
       SKPaymentTransactionWrapper transaction, SKStorefrontWrapper storefront) {
-    return true;
+    return false;
   }
 
   @override
   bool shouldShowPriceConsent() {
-    return false;
+    return true;
   }
 }
