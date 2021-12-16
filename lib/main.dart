@@ -2,10 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:in_app_purchase_ios/in_app_purchase_ios.dart';
+import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
 import 'package:in_app_purchase_platform_interface/in_app_purchase_platform_interface.dart';
 
-import 'payment_queue_delegate.dart';
 import 'store_error.dart';
 
 const _kSubscription1Id = 'com.ry-itto.example.subscription1';
@@ -17,7 +16,7 @@ const _kProductIds = {
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  InAppPurchaseIosPlatform.registerPlatform();
+  InAppPurchaseStoreKitPlatform.registerPlatform();
   runApp(const MyApp());
 }
 
@@ -45,10 +44,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _iosPlatform =
-      InAppPurchasePlatform.instance as InAppPurchaseIosPlatform;
-  final _iosPlatformAddition = InAppPurchasePlatformAddition.instance
-      as InAppPurchaseIosPlatformAddition;
+  final _iosPlatform = InAppPurchasePlatform.instance as InAppPurchaseStoreKitPlatform;
   late StreamSubscription<List<PurchaseDetails>> _subscription;
   List<ProductDetails> _products = [];
 
@@ -63,7 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
         print(error);
       },
     );
-    _iosPlatformAddition.setDelegate(PaymentQueueDelegate());
     initProducts();
 
     super.initState();
@@ -74,8 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (!isAvailable) {
       throw const StoreError(type: StoreErrorType.notAvailable);
     }
-    final productDetailResponse =
-        await _iosPlatform.queryProductDetails(_kProductIds);
+    final productDetailResponse = await _iosPlatform.queryProductDetails(_kProductIds);
     if (productDetailResponse.error != null) {
       throw StoreError.iapError(error: productDetailResponse.error);
     }
@@ -108,8 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
           break;
         case PurchaseStatus.restored:
           final productId = purchaseDetails.productID;
-          final product =
-              _products.firstWhere((element) => element.id == productId);
+          final product = _products.firstWhere((element) => element.id == productId);
           showCupertinoDialog(
             context: context,
             builder: (context) => CupertinoAlertDialog(
@@ -136,6 +129,9 @@ class _MyHomePageState extends State<MyHomePage> {
         case PurchaseStatus.error:
           // Error handling
           print("error: ${purchaseDetails.error!}");
+          break;
+        case PurchaseStatus.canceled:
+          print('canceled!!');
           break;
       }
 
